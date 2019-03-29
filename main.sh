@@ -10,9 +10,9 @@ function install_requirements () {
 
 function check_requirements () {
 	export PATH=$HOME/bin:$HOME/.local/bin:$PATH
-	if [[ ! -f $(type -P python) ]]; then
-		echo -e "- - - - -\npython not found.\nRun this script with init flag.\n"
-	fi
+	if [[ ! -f $(type -P python) ]]; then echo -e "- - - - -\npython not found.\nRun this script with init flag.\n"; fi
+	if [[ ! -f $(type -P wget) ]]; then echo -e "- - - - -\nwget not found.\nRun this script with init flag.\n"; fi
+	if [[ ! -f $(type -P openssl) ]]; then echo -e "- - - - -\nopenssl not found.\nRun this script with init flag.\n"; fi
 	if [[ ! -f $(type -P pip) ]]; then install_requirements; fi
 	if [[ ! -f $(type -P aws) ]]; then install_requirements; fi
 	if [[ ! -f $(type -P certbot) ]]; then install_requirements; fi
@@ -117,10 +117,10 @@ do
 	case $1 in
 		init)
 			if [[ $EUID -eq 0 ]]; then
-				if [[ -f $(type -f apt-get) ]]; then
+				if [[ -f $(type -P apt-get) ]]; then
 					apt-get update >/dev/null
 					apt-get install -y python wget openssl >/dev/null
-				elif [[ -f $(type -f yum) ]]; then
+				elif [[ -f $(type -P yum) ]]; then
 					yum install -y python wget openssl >/dev/null
 				else
 					echo -e "- - - - -\nNeither apt-get not yum package manager found on the system. Perhaps this OS is not currently supported.\n"
