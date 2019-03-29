@@ -5,6 +5,8 @@ Supported Linux OS
 -----
     - Debian (>= 7)
     - Ubuntu (>= 14.04)
+    - RHEL (>= 6)
+    - CentOS (>= 6)
 
 
 Prerequisite

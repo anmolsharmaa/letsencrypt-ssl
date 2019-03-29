@@ -117,8 +117,14 @@ do
 	case $1 in
 		init)
 			if [[ $EUID -eq 0 ]]; then
-				apt-get update >/dev/null
-				apt-get install -y python wget openssl >/dev/null
+				if [[ -f $(type -f apt-get) ]]; then
+					apt-get update >/dev/null
+					apt-get install -y python wget openssl >/dev/null
+				elif [[ -f $(type -f yum) ]]; then
+					yum install -y python wget openssl >/dev/null
+				else
+					echo -e "- - - - -\nNeither apt-get not yum package manager found on the system. Perhaps this OS is not currently supported.\n"
+				fi
 			else
 				echo -e "- - - - -\ninit option requires sudo access.\n Run this script as: sudo $0 <args>\n- - - - -\n"
 			fi
