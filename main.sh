@@ -118,9 +118,7 @@ do
 		init)
 			if [[ $EUID -eq 0 ]]; then
 				apt-get update >/dev/null
-				apt-get install -y software-properties-common python wget >/dev/null
-    				add-apt-repository -y ppa:certbot/certbot >/dev/null
-                                apt-get update >/dev/null
+				apt-get install -y python wget openssl >/dev/null
 			else
 				echo -e "- - - - -\n--init option required sudo access.\n Run this script as: sudo $0 <args>\n- - - - -\n"
 			fi
