@@ -75,4 +75,4 @@ Preferably, you may want to set a cronjob to automatically renew Let's Encrypt S
 @weekly bash main.sh renew --domain <domain-name> --s3-bucket <s3-bucket-name> --email <email-id> --aws-access-key <aws-access-key-id> --aws-secret-key <aws-secret-access-key>
 ```
 - instead of using `@weekly`, feel free to use any cron scheduling pattern as per your convenience.
-- **Note: irrespective of cron schedule, the `renew` action performs only when days left in certificate expiration is less than 30 days.**
+- **Note:** _irrespective of cron schedule, the `renew` action performs only when days left in certificate expiration is less than 30 days._
