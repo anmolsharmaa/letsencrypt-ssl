@@ -11,7 +11,7 @@ function install_requirements () {
 function check_requirements () {
 	export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 	if [[ ! -f $(type -P python) ]]; then
-		echo -e "- - - - -\npython not found.\nRun this script with --init flag.\n"
+		echo -e "- - - - -\npython not found.\nRun this script with init flag.\n"
 	fi
 	if [[ ! -f $(type -P pip) ]]; then install_requirements; fi
 	if [[ ! -f $(type -P aws) ]]; then install_requirements; fi
@@ -120,7 +120,7 @@ do
 				apt-get update >/dev/null
 				apt-get install -y python wget openssl >/dev/null
 			else
-				echo -e "- - - - -\n--init option required sudo access.\n Run this script as: sudo $0 <args>\n- - - - -\n"
+				echo -e "- - - - -\ninit option requires sudo access.\n Run this script as: sudo $0 <args>\n- - - - -\n"
 			fi
 			exit
 		;;
