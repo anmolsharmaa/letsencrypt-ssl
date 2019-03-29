@@ -1,4 +1,6 @@
 #!/bin/bash
+set -aeu
+
 
 function install_requirements () {
 	wget -q -O /tmp/lets-install-pip.py  https://bootstrap.pypa.io/get-pip.py
