@@ -34,11 +34,6 @@ do
     esac
 done
 
-# Create S3 bukcet path if not already
-aws s3api put-object \
-    --bucket "${S3_BUCKET}" \
-    --key "letsencrypt/${DOMAIN}"
-
 # Generate wildcard SSL
 certbot certonly \
     -d "*.${DOMAIN}" \
@@ -56,7 +51,7 @@ certbot certonly \
 date +%s | tee "${PWD}/ts"
 
 # Copy SSL to S3
-aws s3 cp "${PWD}/config/live/${DOMAIN}/fullchain.pem" "s3://${S3_BUKCET}/letsencrypt/${DOMAIN}/"
-aws s3 cp "${PWD}/config/live/${DOMAIN}/privkey.pem" "s3://${S3_BUKCET}/letsencrypt/${DOMAIN}/"
+aws s3 cp "${PWD}/config/live/${DOMAIN}/fullchain.pem" "s3://${S3_BUCKET}/letsencrypt/${DOMAIN}/"
+aws s3 cp "${PWD}/config/live/${DOMAIN}/privkey.pem" "s3://${S3_BUCKET}/letsencrypt/${DOMAIN}/"
 # Update timestamp in S3
-aws s3 cp "${PWD}/ts" "s3://${S3_BUKCET}/letsencrypt/${DOMAIN}/"
+aws s3 cp "${PWD}/ts" "s3://${S3_BUCKET}/letsencrypt/${DOMAIN}/"

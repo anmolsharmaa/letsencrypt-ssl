@@ -5,8 +5,8 @@ RUN pip install --upgrade pip \
         boto3 \
         certbot_dns_route53
 
+COPY ./entrypoint.sh /
+
+ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
+
 WORKDIR /home/letsencrypt
-
-COPY ./entrypoint.sh .
-
-ENTRYPOINT ["/bin/bash", "entrypoint.sh"]
